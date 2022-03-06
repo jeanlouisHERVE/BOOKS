@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { addBook } from '../redux/actions/actionAddbook';
+import { addBook, removeBook } from '../redux/actions/actionAddbook';
 import Flipmove from 'react-flip-move';
 
-const AddBooks = ({libraryData, addBook}) => {
+const AddBooks = ({libraryData, addBook, removeBook}) => {
 
     console.log(libraryData)
 
@@ -23,16 +23,18 @@ const AddBooks = ({libraryData, addBook}) => {
     }
 
     const displayData = libraryData.length > 0 ? 
-    <Flipmove>
-    {libraryData.map(data => {
-        return(
-                <li key={data.id} className='list-group-item list-group-light d-flex justify-content-between align-items-center'>
-                    <span><strong>Auteur : </strong>{data.author}</span>
-                    <span><strong>Titre : </strong>{data.title}</span>
-                    <span className='btn btn-danger'>X</span>
-                </li>
-        ) 
-    }) }</Flipmove>: <p className='text-center'>Aucune donnée à afficher</p>;
+        <Flipmove>
+            {libraryData.map(data => {
+                return(
+                        <li key={data.id} className='list-group-item list-group-light d-flex justify-content-between align-items-center'>
+                            <span><strong>Auteur : </strong>{data.author}</span>
+                            <span><strong>Titre : </strong>{data.title}</span>
+                            <span className='btn btn-danger' onClick={() => removeBook(data.id)}>X</span>
+                        </li>
+                ) 
+            })}
+        </Flipmove>
+    : <p className='text-center'>Aucune donnée à afficher</p>;
 
   return (
     <main role="main">
@@ -92,7 +94,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addBook: param => dispatch(addBook(param))
+        addBook: param => dispatch(addBook(param)),
+        removeBook: id => dispatch(removeBook(id))
     }
 } 
 

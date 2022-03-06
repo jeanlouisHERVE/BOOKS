@@ -14,6 +14,11 @@ const helperAddData = (action) => {
 
 }
 
+const removeDataById = (state, id) => {
+    const books = state.filter( book => book.id !== id)
+    return books;
+}
+
 //reducer 
 const reducerAddBooks = (state = initialState.books, action) => {
 
@@ -27,9 +32,17 @@ const reducerAddBooks = (state = initialState.books, action) => {
             localStorage.setItem('booksData', JSON.stringify(state))
             return state;
         
-            default :
+
+        case bookActionTypes.REMOVE_BOOK:
+            state = removeDataById(state, action.payload);
+            localStorage.setItem('booksData', JSON.stringify(state))
             return state;
-        }
+        
+        default :
+        return state;
+    }
 }
+        
+
 
 export default reducerAddBooks;
