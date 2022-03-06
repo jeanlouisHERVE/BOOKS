@@ -81,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        AddBook: param => dispatch(addBook(param))
+        addBook: param => dispatch(addBook(param))
     }
 } 
 
