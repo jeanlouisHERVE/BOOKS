@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { addBook, removeBook } from '../redux/actions/actionAddbook';
+import { addBook, removeAllBooks, removeBook } from '../redux/actions/actionAddbook';
 import Flipmove from 'react-flip-move';
 
-const AddBooks = ({libraryData, addBook, removeBook}) => {
+const AddBooks = ({libraryData, addBook, removeBook, removeAll}) => {
 
     console.log(libraryData)
 
@@ -75,7 +75,7 @@ const AddBooks = ({libraryData, addBook, removeBook}) => {
                     <ul className='list-group'>
                         {displayData}
                         <div className='d-flex justify-content-center'>
-                           {displayData ? <button className='btn btn-danger mt-4 mb-5'>Effacer tous les livres</button> : null}
+                           {displayData ? <button className='btn btn-danger mt-4 mb-5' onClick={() => removeAll()}>Effacer tous les livres</button> : null}
                         </div>
                     </ul>
                 </div>
@@ -95,7 +95,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addBook: param => dispatch(addBook(param)),
-        removeBook: id => dispatch(removeBook(id))
+        removeBook: id => dispatch(removeBook(id)),
+        removeAll: () => dispatch(removeAllBooks())
     }
 } 
 

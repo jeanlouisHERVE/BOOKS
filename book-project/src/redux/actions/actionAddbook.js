@@ -13,3 +13,9 @@ export const removeBook = id => {
         payload: id // object
     }
 }
+
+export const removeAllBooks = id => {
+    return {
+        type: bookActionTypes.REMOVE_ALL_BOOKS,
+    }
+}

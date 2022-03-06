@@ -31,10 +31,14 @@ const reducerAddBooks = (state = initialState.books, action) => {
             state = [...state, helperAddData(action)]
             localStorage.setItem('booksData', JSON.stringify(state))
             return state;
-        
 
         case bookActionTypes.REMOVE_BOOK:
             state = removeDataById(state, action.payload);
+            localStorage.setItem('booksData', JSON.stringify(state))
+            return state;
+
+        case bookActionTypes.REMOVE_ALL_BOOKS:
+            state = [];
             localStorage.setItem('booksData', JSON.stringify(state))
             return state;
         
