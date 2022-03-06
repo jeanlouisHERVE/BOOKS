@@ -1,4 +1,4 @@
-import bookActionTypes from '../types'
+import bookActionTypes from '../bookActionTypes'
 import { v4 as uuidv4} from 'uuid';
 
 const initialState = {

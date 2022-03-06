@@ -1,31 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {fetchBooks} from '../redux/actions/actionFetchbook';
 
-function searchBook() {
+function SearchBook() {
+
+    const [title, setTitle] = useState('');
+
+    const state = useSelector(state => state.search);
+    const dispatch = useDispatch();
+
+    console.log(state)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(fetchBooks(title))
+    };
+
   return (
     <main role="main">
         <div className='jumbotron jumbotron-fluid bg-success p-3 d-flex align-items-center' style={{minHeight:'300px'}}>
             <div className='container text-center'>
                 <h1 className='display-4'>BOOKS</h1>
                 <p>indiquez le sujet du livre à rechercher sur GoogleAPi</p>
-                <form className='form-inline d-flex justify-content-center'>
+                <form 
+                    className='form-inline d-flex justify-content-center'
+                    onSubmit={handleSubmit}
+                >
                     <div className='form-group'>
                         <input 
-                           
+                            onChange={e => setTitle(e.target.value)}
                             type="text" 
                             className='form-control' 
-                            placeholder='Quoi rechercher' 
+                            placeholder='Quoi rechercher ?' 
                             required
-                           
-                        />
-                    </div>
-                    <div className='form-group ms-3'>
-                        <input 
-                          
-                            type="text" 
-                            className='form-control' 
-                            placeholder='auteur' 
-                            required
-                          
+                            value={title}
                         />
                     </div>
                     <div className='form-group ms-3'>
@@ -63,4 +71,4 @@ function searchBook() {
   )
 }
 
-export default searchBook
+export default SearchBook

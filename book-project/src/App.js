@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import AddBooks from './containers/AddBooks';
-import SearchBook from './containers/searchBook';
+import SearchBook from './containers/SearchBook';
 
 
 function App() {

@@ -1,4 +1,5 @@
-import bookActionTypes from '../types'
+import bookActionTypes from '../bookActionTypes'
+
 
 export const addBook = data => {
     return {
