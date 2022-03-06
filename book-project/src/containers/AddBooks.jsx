@@ -1,18 +1,46 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const AddBooks = () => {
+
+    const initialState = {
+        title: "",
+        author: "",
+    }
+
+    const [newData, setNewData] = useState(initialState)
+    
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(newData)
+    }
+
   return (
     <main role="main">
-        <div className='jumbotron jumbotron-fluid bg-success p-3'>
+        <div className='jumbotron jumbotron-fluid bg-success p-3 d-flex align-items-center' style={{minHeight:'300px'}}>
             <div className='container text-center'>
                 <h1 className='display-4'>BOOKS</h1>
                 <p>ajoutez un livre à votre bibliothèque</p>
-                <form className='form-inline d-flex justify-content-center'>
+                <form className='form-inline d-flex justify-content-center' onSubmit={handleSubmit}>
                     <div className='form-group'>
-                        <input type="text" className='form-control' placeholder='titre' required/>
+                        <input 
+                            value={newData.title}
+                            type="text" 
+                            className='form-control' 
+                            placeholder='titre' 
+                            required
+                            onChange={(e) => setNewData({...newData, title: e.target.value})}
+                        />
                     </div>
                     <div className='form-group ms-3'>
-                        <input type="text" className='form-control' placeholder='auteur' required/>
+                        <input 
+                            value={newData.author}
+                            type="text" 
+                            className='form-control' 
+                            placeholder='auteur' 
+                            required
+                            onChange={(e) => setNewData({...newData, author: e.target.value})}
+                        />
                     </div>
                     <div className='form-group ms-3'>
                     <button className='btn btn-outline-warning '>Ajouter un livre </button>
